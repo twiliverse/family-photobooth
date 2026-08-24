@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Photobooth</title>
+    <style>
+        body { font-family: sans-serif; background-color: #ffe6e6; text-align: center; padding: 20px; }
+        .container { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        .camera-section { display: flex; flex-direction: column; align-items: center; }
+        video { border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: scaleX(-1); }
+        button { margin-top: 20px; padding: 12px 24px; background-color: #ffb3b3; border: none; border-radius: 20px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { background-color: #ff9999; }
+        /* The Photo Strip */
+        .photo-strip { background-color: #fff; padding: 15px; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); width: 220px; display: flex; flex-direction: column; gap: 10px; }
+        .strip-header { font-weight: bold; color: #ff6666; margin-bottom: 5px; }
+        .canvas-container canvas { width: 100%; border-radius: 3px; display: block; }
+        .watermark { margin-top: 10px; font-size: 12px; color: #888; }
+    </style>
+</head>
+<body>
+    <h2>✨ Life Four Cuts ✨</h2>
+    <div class="container">
+        <div class="camera-section">
+            <video id="video" width="320" height="240" autoplay></video>
+            <button id="captureBtn">Capture Photo (0/4)</button>
+        </div>
+        <div class="photo-strip" id="photoStrip">
+            <div class="strip-header">P H O T O B O O T H</div>
+            <div class="canvas-container" id="canvasContainer"></div>
+            <div class="watermark" id="dateWatermark"></div>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const captureBtn = document.getElementById('captureBtn');
+        const canvasContainer = document.getElementById('canvasContainer');
+        const dateWatermark = document.getElementById('dateWatermark');
+        let photoCount = 0;
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => { video.srcObject = stream; })
+            .catch(err => { console.error("Webcam access denied:", err); });
+
+        captureBtn.addEventListener('click', () => {
+            if (photoCount >= 4) {
+                alert("You already took 4 photos! Refresh to start over.");
+                return;
+            }
+            
+            const canvas = document.createElement('canvas');
+            canvas.width = 320;
+            canvas.height = 240;
+            const context = canvas.getContext('2d');
+            
+            // Mirror image correctly
+            context.translate(canvas.width, 0);
+            context.scale(-1, 1);
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            canvasContainer.appendChild(canvas);
+            photoCount++;
+            captureBtn.innerText = `Capture Photo (${photoCount}/4)`;
+            
+            if (photoCount === 4) {
+                const today = new Date();
+                dateWatermark.innerText = today.toLocaleDateString();
+                captureBtn.innerText = "Done!";
+            }
+        });
+    </script>
+</body>
+</html>
