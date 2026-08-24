@@ -16,7 +16,7 @@ A lightweight, browser-based photobooth inspired by the popular "Life Four Cuts"
 2. Ensure you have a working webcam connected to your device.
 3. Open `index.html` in any modern web browser (Chrome, Firefox, Safari, Edge, Opera, Brave).
 4. Grant the browser permission to access your camera when prompted.
-5. Click the **Capture Photo** button four times to fill your strip!
+5. Click the **Capture Photo** button four times each time one pic to fill your strip!
 
 ## Technologies Used
 
