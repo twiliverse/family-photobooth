@@ -1,4 +1,4 @@
-# 📸 Photobooth Web App
+# 📸 Photobooth For family
 
 A lightweight, browser-based photobooth inspired by the popular "Life Four Cuts" (인생네컷) studios found across South Korea. This application uses your device's webcam to capture four sequential images and formats them into a vertical, pastel-themed photo strip like you see in korea.
 
