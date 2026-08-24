@@ -6,7 +6,7 @@ A lightweight, browser-based photobooth inspired by the popular "Life Four Cuts"
 
 * **Webcam Integration:** Directly connects to the user's camera via the browser .
 * **Classic 4-Cut Layout:** Automatically stacks four images into a vintage-style vertical strips.
-* **Auto-Mirroring:** Flips the camera feed so users see themselves naturally, just like a mirror.
+* **Auto-Mirroring:** Flips the camera feed so users can see themselves naturally, just like a mirror.
 * **Timestamp Watermark:** Automatically adds the current date to the bottom of the photo strip once all four photos are taken.
 * **Zero Dependencies:** Built entirely with plain HTML, CSS, and Vanilla JavaScript. No installations required.
 
